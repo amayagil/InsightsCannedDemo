@@ -1,7 +1,7 @@
-#Red Hat Partner Demo System 2018
-##Demo on Red Hat Management Suite
+# Red Hat Partner Demo System 2018
+## Scripted Demo on Red Hat Management Suite
 
-Author: **Amaya Rosa Gil Pippino**
+#### Author: **Amaya Rosa Gil Pippino**
 
 ##README.1ST
 
@@ -22,11 +22,8 @@ In this lab application based self-signed SSL certs are going be used, please no
 Let’s log into the Red Hat Products that you will use in this lab so they are ready to use.
 
 1. From the lab environment information page, copy the hostname of the Workstation system (it should be workstation-GUID.rhpds.opentlc.com where GUID matches your environment’s guid).
-
 2. Open a terminal window on your desktop environment and make sure you can SSH into the workstation host as you see below:
-
 3. [lab-user@localhost ~]$ ssh lab-user@workstation-GUID.rhpds.opentlc.com
-
 4. **Run ‘sudo -i’ once you logon as lab-user to the jumpbox. This gives you root, and root has SSH keys for every host you will need to login to**.
 
 ###NOTE:
@@ -68,17 +65,17 @@ Based on the structure/mobility of the demo, it’s possible to run into some is
 
 SSH from your jumpbox as outlined in Step 0 to root@sat.example.com:
 
-[lab-user@workstation $] sudo -i
-[root@workstation #] ssh sat.example.com
-[root@satellite ~]# katello-service restart
+> * [lab-user@workstation $] sudo -i
+> * [root@workstation #] ssh sat.example.com
+> * [root@satellite ~]# katello-service restart
 
 ### Log into the environment
 
 ***Access to the Satellite server from your browser: Although several browsers are supported, we recommend the use of Firefox***. Remember, as previously mentioned, if you see an SSL warning, accept this for the lab  as its a self-signed certificate from the application.
 
-Point your web browser to https://sat-GUID.rhpds.opentlc.com or click on your lab GUID page that is open in your browser and open the link for your Satellite.
+Point your web browser to **https://sat-GUID.rhpds.opentlc.com** or click on your lab GUID page that is open in your browser and open the link for your Satellite.
 
-Where GUID is your unique identifier as described in Lab 0.
+Where GUID is your unique identifier as described in Step 0.
 
 When logging into these systems you could potentially receive the following due to a self signed certificate: 
 
@@ -98,28 +95,28 @@ Now that we’ve navigated to the login, login as user "**admin**" with the pass
 
 Once you’ve logged into Red Hat Satellite, you will see the main dashboard:
 
-### ![image alt text](images/image_3.png)
+![image alt text](images/image_3.png)
 
 Ally from her office spot has logged into the Satellite Web UI and has gone to Insights tab. Since Ally has her machines registered to Satellite, Insights is already reporting information into Satellite, as you can see in the right upper corner. From the main dashboard and just with a glance, Ally is able to see the overall health of the systems, showing here the most critical issues that need attention. This is what she does every day, and she’s able to maintain her systems healthy with no more resources.
 
-**Background**:
+###**Background**:
 
 The following are the steps needed to get your Red Hat Insights managed hosts registered to Red Hat Satellite, you’d not need to perform any of these, but they are here just in case you need explain them to your audience.  
 
-You’d need to login to your client VM, first SSH into your workstation node at workstation-*<GUID>*.rhpds.opentlc.com as lab-user, the sudo to root. Should a password be required, use "**r3dh4t1!**" as  your password. 
+You’d need to login to your client VM, first SSH into your workstation node at workstation-*GUID*.rhpds.opentlc.com as lab-user, the sudo to root. Should a password be required, use "**r3dh4t1!**" as  your password. 
 
-**[lab-user@localhost ~]$ ssh lab-user@workstation-GUID.rhpds.opentlc.com**
-**[lab-user@workstation-GUID ~]$ sudo -i**
-**[root@workstation ~]#**
+> * **[lab-user@localhost ~]$ ssh lab-user@workstation-GUID.rhpds.opentlc.com**
+> * **[lab-user@workstation-GUID ~]$ sudo -i**
+> * **[root@workstation ~]#**
 
 From there, this is your "jumpbox" that will allow you to access each of the client machines (ic1.example.com through ic9.example.com), also using ssh (ssh passwordless has already been configured for your convenience). The following are the commands used.
 
-**[root@icX ~]# curl https://sat.example.com/pub/bootstrap.py > bootstrap.py --insecure**
-**[root@icX ~]# chmod +x bootstrap.py**
+> * **[root@icX ~]# curl https://sat.example.com/pub/bootstrap.py > bootstrap.py --insecure**
+> * **[root@icX ~]# chmod +x bootstrap.py**
 
 Run the bootstrap.py script using the Satellite manifest that uses certificate based authorization in order to register your machines with Satellite as follows (provide the password when required):
 
-**[root@icX ~]#**** ./bootstrap.py -l admin -s sat.example.com -o 'EXAMPLE.COM' -L 'Default Location' -g rhel7 -a rhel7**
+> **[root@icX ~]#* ./bootstrap.py -l admin -s sat.example.com -o 'EXAMPLE.COM' -L 'Default Location' -g rhel7 -a rhel7**
 
 In addition, manual installation and registration of the Insights client is possible by performing the following:
 
@@ -127,25 +124,22 @@ NOTE: On RHEL 7.5 client RPM has been renamed to insights-client, but this demo 
 
 To install Insights RPM in each of your systems issue the following command:
 
-**[root@icX ~]# ****yum -y install insights****-client**
+> **[root@icX ~]# yum -y install insights-client**
 
 And then, simply register each machine with Red Hat Insights as follows:
 
-**[root@icX ~]# insights-client --register**
+> **[root@icX ~]# insights-client --register**
 
-**NOTE: **Due to the configuration of the account used for this demo (it’s shared amongst the different instances) do you need to do this next step (my recommendation is that you perform it while explaining the persona overview, it takes around 5 mins to complete). It’s a playbook that basically does all what’s explained above.
+**NOTE**: Due to the configuration of the account used for this demo (it’s shared amongst the different instances) do you need to do this next step (my recommendation is that you perform it while explaining the persona overview, it takes around 5 mins to complete). It’s a playbook that basically does all what’s explained above.
 
 **REQUIRED STEP!!!!**
 
 From the jumpbox machine, jump to the tower one and execute the following playbook:
 
-**[root@workstation ~]# ssh tower**
-
-**Last login: Thu Jul 19 09:15:27 2018 from workstation.example.com**
-
-**[root@tower ~]# cd playbooks/**
-
-**[root@tower playbooks]# ****ansible-playbook canned-demo.yml**
+> * **[root@workstation ~]# ssh tower**
+> * **Last login: Thu Jul 19 09:15:27 2018 from workstation.example.com**
+> * **[root@tower ~]# cd playbooks/**
+> * **[root@tower playbooks]# ansible-playbook canned-demo.yml**
 
 What this does, it’s assuring machines are registered to Insights and Satellite and then, making sure there’s something to be fixed. **This step is required.**
 
@@ -163,13 +157,11 @@ Recommendations from Insights are human-readable and in most cases can simply be
 
 In this demo, we want to show how Red Hat Insights detects and fixes issues in an IT infrastructure. Insights provides you with a detailed list of steps or with an Ansible playbook that is generated on the fly (it even allows you to choose from a different set of options when available) for you to either run it manually or via Ansible Tower. This demo covers it all.
 
-First, we will see how Ally identifies the different issues affecting the IT infrastructure;  to do so, from the Satellite UI, click on **Red Hat Insights** **→ Overview, **where you should see all the registered systems (9), actions summary (highlighted by priority) as well as latest updates from Red Hat.
-
-** **
+First, we will see how Ally identifies the different issues affecting the IT infrastructure;  to do so, from the Satellite UI, click on **Red Hat Insights → Overview**, where you should see all the registered systems (9), actions summary (highlighted by priority) as well as latest updates from Red Hat.
 
 ![image alt text](images/image_4.png)
 
-In this demo, we will fix the specific "**Kernel vulnerable to man-in-the-middle via payload injection (CVE-2016-5696)****"** on your client VMs without causing downtime, which is also a security threat.
+In this demo, we will fix the specific "**Kernel vulnerable to man-in-the-middle via payload injection (CVE-2016-5696)**" on your client VMs without causing downtime, which is also a security threat.
 
 As mentioned, Insights generates an Ansible Playbook that Insights provides us. You can see that in the top left corner of every single issue with the Ansible logo in blue if a playbook is available, or in grey if it’s not.
 
@@ -183,7 +175,8 @@ Click on any of your client VMs, **icX.example.com**. You will see the list of i
 
 2. Use your browser’s search function to search for "**payload injection**". 
 
-*Note: Reading the description for the vulnerability shows that the ***_sysctl _***variable is set to a level that allows being exploited. We want to do the active mitigation by changing the ***_sysctl _***variable and making it permanent on reboot. In this case, we do not want to update the kernel or reboot since we don’t want downtime. *
+####**Note**: 
+Reading the description for the vulnerability shows that the **sysctl** variable is set to a level that allows being exploited. We want to do the active mitigation by changing the **sysctl** variable and making it permanent on reboot. In this case, we do not want to update the kernel or reboot since we don’t want downtime. *
 
 *We will firstly do it by executing an ansible playbook from the command line, then we will do it from ansible Tower, so all the options are able to be shown to your audience.*
 
@@ -193,17 +186,15 @@ In the particular case of the payload injection security issue, an Ansible Playb
 
 ![image alt text](images/image_7.png)
 
-Now we’d need to create a plan in which the issues that are found will be solved using an Ansible Playbook. In this demo, it is already created and stored in the tower machines, but just for demonstration purposes, we’ll do it again.  To do so, from your Satellite 6.3 UI, click on **Red Hat Insights** **→ Planner.**
+Now we’d need to create a plan in which the issues that are found will be solved using an Ansible Playbook. In this demo, it is already created and stored in the tower machines, but just for demonstration purposes, we’ll do it again.  To do so, from your Satellite 6.3 UI, click on **Red Hat Insights → Planner.**
 
 ![image alt text](images/image_8.png)
 
-And once there, click on **Create**** a plan**.
+And once there, click on **Create** a plan**.
 
 ![image alt text](images/image_9.png)
 
 Fill in the boxes as in the example, and do not forget to select only the payload injection security issue and select any or all the **icX.example.com** systems in which this solution is to be applied (then this playbook won’t be used). Then click "save".
-
-** ** 
 
 ![image alt text](images/image_10.png)
 
@@ -211,18 +202,17 @@ Insights offers us two ways to solve this issue, one is by updating the kernel, 
 
 Insights gives us the opportunity to choose the resolution that we want with the simple use of a mouse click. Please make sure to select "**Set sysctl ip4 challenge ack limit**" as your preferred choice and then click on the Save button.
 
- ![image alt text](images/image_11.png)
+![image alt text](images/image_11.png)
 
 Once the plan is saved, the planner screen is shown where you can see the newly created plan, as well as the issues it resolves and the systems affected.
 
 ![image alt text](images/image_12.png)
 
-If not already there, login to your client VM, first SSH into your workstation node at workstation-*<GUID>*.rhpds.opentlc.com as the lab-user. An ssh key is already in the home directory of your laptop, which should allow you to login without a password. Should a password be required, use "**r3dh4t1!**"  as  your password. 
+If not already there, login to your client VM, first SSH into your workstation node at workstation-*GUID*.rhpds.opentlc.com as the lab-user. An ssh key is already in the home directory of your laptop, which should allow you to login without a password. Should a password be required, use "**r3dh4t1!**"  as  your password. 
 
-**[lab-user@localhost ~]$ ssh workstation-GUID.rhpds.opentlc.com**
-
-**[lab-user@workstation-GUID ~]$ sudo -i
-[root@workstation ~]#**
+> * **[lab-user@localhost ~]$ ssh workstation-GUID.rhpds.opentlc.com**
+> * **[lab-user@workstation-GUID ~]$ sudo -i**
+> * **[root@workstation ~]#**
 
 Now that you are in the workstation node, SSH into the tower machine in order perform the recommended active mitigation with the Ansible Playbook. 
 
@@ -244,37 +234,30 @@ And also, SSH into your RHEL7 client/host.
 
 You could, as **root**, perform the recommended active mitigation (in one of the machines) or just show your audience the file before and after the execution of the playbook, **/etc/sysctl.conf.**
 
-**	**
-
 To do it manually, simply run:
 
-**# echo "net.ipv4.tcp_challenge_ack_limit = 2147483647" >> /etc/sysctl.conf**
-
-**# sysctl -p**
-
-**net.ipv4.tcp_challenge_ack_limit = 100**
-
-**vm.legacy_va_layout = 0**
-
-**net.ipv4.tcp_challenge_ack_limit = 2147483647**
+> * **echo "net.ipv4.tcp_challenge_ack_limit = 2147483647" >> /etc/sysctl.conf**
+> * **sysctl -p**
+> * **net.ipv4.tcp_challenge_ack_limit = 100**
+> * **vm.legacy_va_layout = 0**
+> * **net.ipv4.tcp_challenge_ack_limit = 2147483647**
 
 From the Ansible Tower machine’s command line, just execute the playbook "payload-injection.yml" to solve all the payload injection vulnerabilities in all your 9 client machines.
 
-**[root@tower ~]# cd playbooks/**
-
-**[root@tower playbooks]# ansible-playbook payload-injection.yml**
+> * **[root@tower ~]# cd playbooks/**
+> * **[root@tower playbooks]# ansible-playbook payload-injection.yml**
 
 After applying the active mitigation, we want to have the system report any changes, so, the playbook finalizes by running insights client.
 
 Wait until this step completes before moving to the next step.
 
-From your Satellite 6.3 UI, click on **Red Hat Insights** **→ Inventory. **
+From your Satellite 6.3 UI, click on **Red Hat Insights → Inventory.**
 
-**	**![image alt text](images/image_13.png)
+![image alt text](images/image_13.png)
 
 Click on any of your client VMs, **icX.example.com**. You will notice than the number of actions has decreased by one.
 
-	![image alt text](images/image_14.png)
+![image alt text](images/image_14.png)
 
 Use your browser’s search function to search for "**payload injection**". You will notice that this payload injection issue is no longer listed due to fixing the vulnerability.
 
@@ -292,7 +275,7 @@ Again, you will show your audience how to create a plan that solves all the issu
 
  
 
-From the Satellite UI, click on **Red Hat Insights** **→ Inventory **so we can focus on the whole infrastructure.
+From the Satellite UI, click on **Red Hat Insights → Inventory** so we can focus on the whole infrastructure.
 
 ![image alt text](images/image_15.png)
 
@@ -304,9 +287,8 @@ This way, we are going to create an Ansible Playbook-based plan to solve issues 
 
 The Plan / Playbook Builder screens appears. Please make sure to fill the boxes as follows:
 
-Plan name: fix-all
-
-Actions: all (do this by clicking on the box by the Action label at the top).
+* **Plan name: fix-all**
+* **Actions: all** (do this by clicking on the box by the Action label at the top).
 
 Your screen should look like:
 
@@ -326,12 +308,11 @@ Scrolling down the screen, you should be able to download the playbook.
 
 Like in the previous step, we need to log into the tower machine in order to run the Ansible Playbook.
 
-If not already there, login to your client VM, first SSH into your workstation node at workstation-*<GUID>*.rhpds.opentlc.com as the lab-user. An ssh key is already in the home directory of your laptop, which should allow you to login without a password. Should a password be required, use "**r3dh4t1!**"  as  your password. 
+If not already there, login to your client VM, first SSH into your workstation node at workstation-*GUID*.rhpds.opentlc.com as the lab-user. An ssh key is already in the home directory of your laptop, which should allow you to login without a password. Should a password be required, use "**r3dh4t1!**"  as  your password. 
 
-**[lab-user@localhost ~]$ ssh workstation-GUID.rhpds.opentlc.com**
-
-**[lab-user@workstation-GUID ~]$ sudo -i
-[root@workstation ~]#**
+> * **[lab-user@localhost ~]$ ssh workstation-GUID.rhpds.opentlc.com**
+> * **[lab-user@workstation-GUID ~]$ sudo -i**
+> * **[root@workstation ~]#**
 
 Now that you are in the workstation node, SSH into the tower machine in order perform the recommended active mitigation with the Ansible Playbook. 
 
@@ -357,7 +338,7 @@ Please note that when the execution is completed (this may take a while), the In
 
 Note that some of the issues won’t be able to be solved by the ansible playbook and you’d need to do some extra steps.
 
-Now from the Satellite UI, click on **Red Hat Insights** **→ Inventory **you will notice that your systems have few issues.
+Now from the Satellite UI, click on **Red Hat Insights→ Inventory** you will notice that your systems have few issues.
 
 Please, after solving these issues, revert the state by executing:
 
@@ -463,7 +444,7 @@ You now can see a list of issues Insights has identified and whether or not the 
 
 Remediation of an Insights inventory allows Tower to run Insights playbooks with a single click, instead of using the CLI as we did in the previous section of the demo. This project is also created, you just need to explore it.
 
-Click the **Projects** main link to access the Projects page and then click on "Insights Remediation". Please notice the filled in fields, specially the **Project Base Path** which is populate with /var/lib/awx/projects (the directory where playbooks are stored locally in Tower).
+Click the **Projects** main link to access the Projects page and then click on "Insights Remediation". Please notice the filled in fields, specially the **Project Base Path** which is populate with **/var/lib/awx/projects** (the directory where playbooks are stored locally in Tower).
 
 Your screen should look as follows:
 
@@ -479,7 +460,7 @@ In the real world, you should be seeing something like the following screen:
 
 Similar to the one before, we are to use a remediation job template that can use the remediation project we have just covered.
 
-Click the **Templates** main link to access the Projects page and then, click on the "**Insights Remediation Template**". Please notice the filled in fields, specially the “**Playbook**” where ic1-ic4-fix-all.yml is already selected from the drop-down menu list. This is the playbook associated with the Remediation project we previously saw, which will fix both the payload injection vulnerability and the openssh vulnerability to remote password guessing attack.
+Click the **Templates** main link to access the Projects page and then, click on the "**Insights Remediation Template**". Please notice the filled in fields, specially the “**Playbook**” where **ic1-ic4-fix-all.yml** is already selected from the drop-down menu list. This is the playbook associated with the Remediation project we previously saw, which will fix both the payload injection vulnerability and the openssh vulnerability to remote password guessing attack.
 
 As explained before, notice we are using again the machine credentials, as we need to log into the machines and execute commands there.
 
