@@ -1,7 +1,7 @@
-# InsightsCannedDemo
+#Insights Canned Demo
 Red Hat products can help you with managing and automating infrastructure resources. You will be able to demonstrate the power and flexibility of Red Hat management using either one or a combination of Red Hat products, such as Red Hat Satellite, Ansible Tower by Red Hat, Red Hat Insights, it is up to you to show all of them or a subset, depending your needs. Learn how to deliver demos without taking a Lab!
 
-Access the lab environment
+##Access the lab environment
 
     First time login, forgot login or password? Go to https://www.opentlc.com/account
 
@@ -13,7 +13,7 @@ Access the lab environment
     
     Do not forget to upload your username's public SSH key to http://www.opentlc.com/, read the instructions at http://www.opentlc.com/ssh.html
 
-Log into RHDPS and order the Lab from the Service Catalog as follows:
+##Log into RHDPS and order the Lab from the Service Catalog as follows:
 
     Log in to the Red Hat Product Demo System with your provided credentials.
 
