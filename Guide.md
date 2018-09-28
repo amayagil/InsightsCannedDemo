@@ -17,10 +17,6 @@ The audience is for SAs willing to show Red Hat Management products with no prev
 
 Let’s log into the Red Hat Products that you will use in this lab so they are ready to use.
 
-In this lab application based self-signed SSL certs are going be used, please note that they are being used and should accepted in order to complete the lab exercises.
-
-Let’s log into the Red Hat Products that you will use in this lab so they are ready to use.
-
 1. From the lab environment information page, copy the hostname of the Workstation system (it should be workstation-GUID.rhpds.opentlc.com where GUID matches your environment’s guid).
 2. Open a terminal window on your desktop environment and make sure you can SSH into the workstation host as you see below:
 3. [lab-user@localhost ~]$ ssh lab-user@workstation-GUID.rhpds.opentlc.com
@@ -61,7 +57,7 @@ In this demo we will look at one day in the life of Ally, the system administrat
 
 ### Notes about Satellite Environment and Configurations
 
-Based on the structure/mobility of the demo, it’s possible to run into some issues with certain services therein. If you run into anything, you can run the following to fully restart the satellite services:
+Based on the structure/mobility of the demo, it’s possible to run into some issues with certain services therein. ONLY if you run into anything, you can run the following to fully restart the satellite services:
 
 SSH from your jumpbox as outlined in Step 0 to root@sat.example.com:
 
