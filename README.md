@@ -15,7 +15,7 @@ First time login, forgot login or password? Go to https://www.opentlc.com/accoun
 
 ## Log into RHDPS and order the Lab from the Service Catalog as follows:
 
-Log in to the Red Hat Product Demo System with your provided credentials.
+Log in to the Red Hat Product Demo System with your provided credentials into [RHPDS](https://rhpds.redhat.com/).
  
 ![RHPDS](images/rhpds_login.png)
  
@@ -34,3 +34,5 @@ Please, read carefully all of the information on the resulting page, check the b
 ⚠️ WARNING It takes about 20 ~ 25 minutes for the demo to load completely and become accessible. Wait for the full demo to load, even if some of its systems are marked "Up.". Watch for an email with information about how to access your demo environment. Make note of the email's contents: a list of hostnames, IP addresses, and your GUID. Whenever you see in the demo instructions, replace it with the GUID provided in the email. You can get real-time updates and status of your demo environment at https://www.opentlc.com/rhpds-status.
 
 ✔️ NOTE Be mindful of the runtime of your demo environment! It may take several hours to complete the demo, so you may need to extend the runtime. This is especially important in later steps when you are building virtual machines. For information on how to extend runtime and lifetime, see https://www.opentlc.com/lifecycle.
+
+You can find the full demo guide [here](https://github.com/amayagil/InsightsCannedDemo/blob/master/Guide.md)
