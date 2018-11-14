@@ -11,7 +11,7 @@ First time login, forgot login or password? Go to https://www.opentlc.com/accoun
  
 * Passwords to the services is referred as \<to\_be\_provided\>. Please contact GPTE you didn't get them.
 
-* Do not forget to upload your username's public SSH key to http://www.opentlc.com/, read the instructions at http://www.opentlc.com/ssh.html
+* Do not forget to upload your username's public SSH key to https://account.opentlc.com/update/, read the instructions at http://www.opentlc.com/ssh.html
 
 ## Log into RHDPS and order the Lab from the Service Catalog as follows:
 
