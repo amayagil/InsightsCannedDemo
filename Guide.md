@@ -3,7 +3,7 @@
 
 #### Author: **Amaya Rosa Gil Pippino**
 
-##README.1ST
+## README.1ST
 
 The goal of this demo is to introduce you to a variety of Red Hat products that can help you with managing and automating infrastructure resources. You will be able to demonstrate the power and flexibility of Red Hat management using either one or a combination of Red Hat products, such as Red Hat Satellite, Ansible Tower by Red Hat, Red Hat Insights, it is up to you to show all of them or a subset, depending your needs.
 
@@ -95,7 +95,7 @@ Once you’ve logged into Red Hat Satellite, you will see the main dashboard:
 
 Ally from her office spot has logged into the Satellite Web UI and has gone to Insights tab. Since Ally has her machines registered to Satellite, Insights is already reporting information into Satellite, as you can see in the right upper corner. From the main dashboard and just with a glance, Ally is able to see the overall health of the systems, showing here the most critical issues that need attention. This is what she does every day, and she’s able to maintain her systems healthy with no more resources.
 
-###**Background**:
+### **Background**:
 
 The following are the steps needed to get your Red Hat Insights managed hosts registered to Red Hat Satellite, you’d not need to perform any of these, but they are here just in case you need explain them to your audience.  
 
